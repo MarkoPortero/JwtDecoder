@@ -6,8 +6,7 @@ use serde::{Deserialize, Serialize};
 use std::*;
  
 fn main() {
-    let mut token = "ewogICJhbGciOiAiSFMyNTYiLAogICJ0eXAiOiAiSldUIgp9.ewogICJqdGkiOiAiMGJlNzhmOWItYTVkZC00MjJjLTg4MzMtZmIxZDFkNzQ2MzdiIiwKICAidHlwZSI6ICJQbGF0Zm9ybVRva2VuIiwKICAiaXNzIjogImdwaS5hdXRoIiwKICAiaWF0IjogMTYwNTU1NzE3MywKICAiZXhwIjogMTYwNTU1ODA3MywKICAibmJmIjogMTYwNTU1NzE3MywKICAidmVyIjogIjEuMCIsCiAgInJlZ2lvbiI6ICJVUyIsCiAgIm1lcmNoYW50X2FjY291bnRfaWQiOiAiMTY0MzU1OTA4NjU0OTUyMSIsCiAgImNoYW5uZWwiOiAicGF5cGFnZSIsCiAgImF1ZCI6IFsKICAgICJwbGF0Zm9ybV9zZXJ2aWNlcyIKICBdLAogICJzY29wZXMiOiB7CiAgICAiaW50ZW50IjogewogICAgICAiaW50ZW50X3R5cGUiOiAic3RvcmVfYWNjb3VudCIsCiAgICAgICJpbnRlbnRfcmVmZXJlbmNlX2lkIjogIjEyMTIzMTIzIgogICAgfQogIH0KfQ.qgsmw7ey3DbZYcqNKTBO6OdFCnC9P2ERbM6ZKtpq0H0";
-    //io::stdin().read_line(&mut token).unwrap();
+    io::stdin().read_line(&mut token).unwrap();
     decode_jwt_header(&token);
     decode_body(&token);
 }
@@ -57,7 +56,7 @@ fn decode_body(token: &str){
     let mut validation = Validation::default();
     validation.leeway = 999999;
     validation.validate_exp = false;
-    let token_message = decode::<Claims>(&token, &DecodingKey::from_secret("80-!7CN32i_!-fkp62_!jicj~4_!-1jF".as_ref()), &validation);
+    let token_message = decode::<Claims>(&token, &DecodingKey::from_secret("PUT DECODING SECRET HERE".as_ref()), &validation);
     let  token_message_result = token_message.unwrap();
     let claims = token_message_result.claims;
     println!("{}", serde_json::to_string_pretty(&claims).unwrap());
